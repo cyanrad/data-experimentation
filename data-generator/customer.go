@@ -114,6 +114,11 @@ func WriteCustomersToCSV(customers []Customer, filename string) error {
 	writer := csv.NewWriter(file)
 	defer writer.Flush()
 
+	headers := []string{"CustomerID", "FirstName", "LastName", "Email", "Phone"}
+	if err := writer.Write(headers); err != nil {
+		return err
+	}
+
 	for _, customer := range customers {
 		err := writer.Write([]string{
 			strconv.Itoa(customer.CustomerID),
@@ -139,6 +144,11 @@ func WriteProductsToCSV(products []Product, filename string) error {
 
 	writer := csv.NewWriter(file)
 	defer writer.Flush()
+
+	headers := []string{"ProductID", "ProductName", "Brand", "Price", "StockQuantity", "SupplierID"}
+	if err := writer.Write(headers); err != nil {
+		return err
+	}
 
 	for _, product := range products {
 		err := writer.Write([]string{
@@ -167,6 +177,11 @@ func WriteSalesToCSV(sales []Sale, filename string) error {
 	writer := csv.NewWriter(file)
 	defer writer.Flush()
 
+	headers := []string{"SaleID", "CustomerID", "ProductID", "SaleDate", "QuantitySold", "TotalPrice"}
+	if err := writer.Write(headers); err != nil {
+		return err
+	}
+
 	for _, sale := range sales {
 		err := writer.Write([]string{
 			strconv.Itoa(sale.SaleID),
@@ -193,6 +208,11 @@ func WriteSuppliersToCSV(suppliers []Supplier, filename string) error {
 
 	writer := csv.NewWriter(file)
 	defer writer.Flush()
+
+	headers := []string{"SupplierID", "SupplierName", "ContactPerson", "Phone", "Email"}
+	if err := writer.Write(headers); err != nil {
+		return err
+	}
 
 	for _, supplier := range suppliers {
 		err := writer.Write([]string{
